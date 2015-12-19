@@ -1,6 +1,6 @@
 from measurement.measures import Distance
 
-"""Takes input from user and calculates materials for building garden beds
+"""Calculator takes input from user and calculates materials for building garden beds
 of a particular demension. User inputs demensions, width length and height
 of garden bed in feet, as well as the number of beds to be built. All
 outputs are in feet. Outputs include the total number feet needed of 2 by
@@ -49,24 +49,27 @@ def amt_sides(height):
 
 
 # determine most effecient use of materials with least amount of cuts
-def board_size(sides, length, width, board_lengths):
+def board_size(sides, length, width):
+        boardlist = [8, 12, 16, 20, 24]
 	new_boardlist = []
 	long_sides = sides
 	wide_sides = sides
 	while long_sides > 0:  
-		for size in board_lengths:
+		for size in boardlist:
 			if size >= length and size % length  >= 0:
 				new_boardlist.append(size)
 				long_sides -= 1
 				break
 	while wide_sides > 0:	
-		for size in board_lengths:
+		for size in boardlist:
 			if size >= width and size % width >= 0:
 				new_boardlist.append(size)
 				wide_sides -= 1
 				break
-					
-	return new_boardlist
+        					
+	return (str(new_boardlist.count(8)) + " eight foot" +', '+ str(new_boardlist.count(12))
++ " twelve foot" + ', '+ str(new_boardlist.count(16)) + " sixteen foot" +' ,'+ str(new_boardlist.count(20))
++ " twenty foot" +' ,'+ str(new_boardlist.count(24)) + " twenty-four foot")
 	
 
 width = float(raw_input('enter width '))
@@ -81,8 +84,6 @@ num_beds = float(raw_input('how many beds of size?'))
 
 sides = amt_sides(height)
 
-board_lengths =  [8, 12, 16, 20, 24]
-
 print feet
 
 print times_beds(num_beds)
@@ -91,4 +92,4 @@ print ('you need ' + str(sides) +', '+ str(length) +
  ' foot boards, and ' + str(sides) +', '+ str(width)
 + ' foot boards.')
 
-print board_size(sides, length, width, board_lengths)
+print board_size(sides, length, width,)
